@@ -1,0 +1,131 @@
+:root {
+  --navbar-height: 64px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  height: var(--navbar-height);
+}
+
+.main-content {
+  padding-top: var(--navbar-height);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.custom-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.2rem 0;
+
+  &.scrolled {
+    padding: 0.6rem 0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-brand {
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #0f172a;
+    .brand-i {
+      color: #2563eb;
+      position: relative;
+    }
+  }
+
+  .nav-link {
+    color: #475569 !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #2563eb !important;
+    }
+    &.active {
+      color: #2563eb !important;
+    }
+  }
+
+  // --- Stylish Dropdown ---
+  .custom-dropdown {
+    .dropdown-menu {
+      border-radius: 12px;
+      padding: 0.75rem;
+      min-width: 240px;
+      top: 120%;
+
+      // Gap for animation
+
+      .dropdown-item {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        &:hover {
+          background-color: #f1f5f9;
+          color: #2563eb;
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    // Animation on Hover (Desktop)
+    @media (min-width: 992px) {
+      &:hover .dropdown-menu {
+        display: block;
+        animation: nav-slide 0.3s ease forwards;
+      }
+    }
+  }
+
+  .contact-btn {
+    background: #0f172a;
+    color: white !important;
+    border-radius: 50px;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+    &:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+    }
+  }
+}
+
+@keyframes nav-slide {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mobile Responsive Fixes
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: white;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+    .nav-link {
+      padding: 0.8rem 0 !important;
+    }
+    .dropdown-menu {
+      border: 1px solid #f1f5f9;
+      margin-bottom: 1rem;
+    }
+  }
+}
