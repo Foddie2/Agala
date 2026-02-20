@@ -1,0 +1,27 @@
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* Adding a nice subtle gradient to the Material primary color */
+  background: linear-gradient(90deg, #3f51b5 0%, #5c6bc0 100%);
+}
+
+.logo-icon {
+  transform: rotate(-10deg);
+  color: #ffd740; // Material Gold/Amber
+}
+
+.contact-btn {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  color: white !important;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.elevation-z4 {
+  box-shadow:
+    0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}

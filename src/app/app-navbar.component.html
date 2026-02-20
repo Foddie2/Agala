@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="navbar-container elevation-z4">
+  <div class="container mx-auto flex items-center justify-between w-full">
+    <span class="flex items-center gap-2 cursor-pointer">
+      <mat-icon class="logo-icon">rocket_launch</mat-icon>
+      <span class="text-xl font-bold tracking-wider">AGALA</span>
+    </span>
+
+    <div *ngIf="!(isHandset$ | async)" class="flex gap-4">
+      <button mat-button>PROJECTS</button>
+      <button mat-button>EXPERIENCE</button>
+      <button mat-button>ABOUT</button>
+      <button mat-stroked-button class="contact-btn">GET IN TOUCH</button>
+    </div>
+
+    <div *ngIf="isHandset$ | async">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before" class="mobile-menu">
+        <button mat-menu-item>
+          <mat-icon>work_outline</mat-icon>
+          <span>Projects</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>history</mat-icon>
+          <span>Experience</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>About</span>
+        </button>
+        <!-- <mat-divider></mat-divider> -->
+        <button mat-menu-item color="accent">
+          <mat-icon>mail</mat-icon>
+          <span>Contact Me</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
