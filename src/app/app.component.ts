@@ -13,8 +13,8 @@ import { MatMenuModule } from '@angular/material/menu';
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
-  templateUrl: './app-navbar.component.html',
-  styleUrl: './app-navbar.component.scss',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class App {
   private breakpointObserver = inject(BreakpointObserver);

@@ -9,7 +9,9 @@
       <button mat-button>PROJECTS</button>
       <button mat-button>EXPERIENCE</button>
       <button mat-button>ABOUT</button>
-      <button matButton="elevated">GET IN TOUCH</button>
+            <button mat-raised-button class="contact-btn">GET IN TOUCH</button>
+
+      <!-- <button mat-raised-button (click)="onContactClick()" class="contact-btn">GET IN TOUCH</button> -->
     </div>
 
     <div *ngIf="isHandset$ | async">

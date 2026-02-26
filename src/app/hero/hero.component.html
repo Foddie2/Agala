@@ -1,0 +1,43 @@
+<div class="hero-wrapper" [class.mobile-layout]="isMobile$ | async">
+  <div class="hero-container">
+    <div class="hero-text-area">
+      <mat-chip-set class="mb-4">
+        <mat-chip class="status-chip">
+          <mat-icon matChipAvatar>verified</mat-icon>
+          Available for Hire
+        </mat-chip>
+      </mat-chip-set>
+
+      <h1 class="mat-display-large">
+        Architecting <span class="accent-text">Modern</span> Web Experiences
+      </h1>
+
+      <p class="mat-body-large text-secondary">
+        I am a Senior Software Engineer specializing in Angular and Enterprise Architecture. I build
+        scalable, accessible, and high-performance applications.
+      </p>
+
+      <div class="cta-group">
+        <button mat-flat-button color="primary" class="large-cta">
+          <mat-icon>explore</mat-icon>
+          VIEW PROJECTS
+        </button>
+        <button mat-stroked-button class="large-cta">LET'S TALK</button>
+      </div>
+    </div>
+
+    <div class="hero-visual-area">
+      <div class="image-frame elevation-z8">
+        <img
+          src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000"
+          alt="Developer Portfolio"
+        />
+
+        <div class="experience-card mat-elevation-z4">
+          <div class="years">8+</div>
+          <div class="label">Years of<br />Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
