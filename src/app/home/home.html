@@ -1,0 +1,26 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Hero } from '../hero'; // Ensure this matches your Hero class name and path
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, Hero],
+  template: `
+    <section class="page-container">
+      <app-hero></app-hero>
+
+      <div class="content-spacer"></div>
+    </section>
+  `,
+  styles: [`
+    .page-container {
+      display: block;
+      width: 100%;
+    }
+    .content-spacer {
+      height: 50vh; /* Adds scroll room for the portfolio feel */
+    }
+  `]
+})
+export class HomeComponent {}
