@@ -5,9 +5,9 @@
 export const PROFILE = {
   name: 'Benson Agala',
   initials: 'BA',
-  role: 'Frontend & Angular Developer',
+  role: 'Senior Software Engineer',
   focus: 'Application Security',
-  headline: 'Frontend Engineer · AppSec & DevSecOps',
+  headline: 'Senior Software Engineer · AppSec & DevSecOps',
 
   // TODO: replace with the public email address you want clients to use.
   email: 'hello@example.com',
@@ -21,7 +21,7 @@ export const PROFILE = {
 
   /** Roles shown to recruiters on the home page. */
   openTo: [
-    'Frontend / Angular Engineer',
+    'Senior Software Engineer (Angular · Vue/Nuxt)',
     'Application Security Engineer',
     'DevSecOps Engineer',
   ],
@@ -35,9 +35,8 @@ export const PROFILE = {
   cvUrl: '',
 
   /**
-   * Optional form backend (e.g. a Formspree endpoint like
-   * "https://formspree.io/f/xxxxxxx"). When empty, the contact form falls back
-   * to opening the visitor's email client with the message pre-filled.
+   * Where the contact form posts. "/api/contact" is this app's own Express
+   * endpoint (src/contact-api.ts), which emails you via SMTP — see .env.example.
    */
-  contactFormEndpoint: '',
+  contactFormEndpoint: '/api/contact',
 } as const;

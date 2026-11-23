@@ -16,6 +16,7 @@ export const NAV_LINKS: NavLink[] = [
 
 export const HERO_TAGS = [
   'Angular',
+  'Vue / Nuxt',
   'TypeScript',
   'REST APIs',
   'Shopify',
@@ -43,9 +44,9 @@ export const TRACKS: Track[] = [
   {
     icon: 'code',
     title: 'Frontend Engineering',
-    body: 'Angular applications and dashboards that turn complex business data into fast, usable interfaces.',
+    body: 'Angular and Vue/Nuxt applications and dashboards that turn complex business data into fast, usable interfaces.',
     points: [
-      'Standalone Angular, Signals, RxJS',
+      'Angular (Signals, RxJS) and Vue 3 / Nuxt',
       'Dashboards, inventory & order systems',
       'REST API and Shopify integrations',
     ],
@@ -101,6 +102,9 @@ export const SKILL_GROUPS: SkillGroup[] = [
     description: 'The foundation of every interface I ship.',
     items: [
       'Angular',
+      'Vue 3',
+      'Nuxt',
+      'Pinia',
       'TypeScript',
       'RxJS',
       'Signals',
@@ -234,9 +238,9 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     icon: 'code',
-    title: 'Custom Angular Web Applications',
-    body: 'Production-grade applications built on modern standalone Angular, typed end to end and structured to grow with your business.',
-    deliverables: ['Standalone architecture', 'SSR & SEO-ready', 'Tested, documented code'],
+    title: 'Custom Web Applications — Angular & Vue/Nuxt',
+    body: 'Production-grade applications built on modern Angular or Vue 3 / Nuxt, typed end to end and structured to grow with your business.',
+    deliverables: ['Angular or Vue/Nuxt', 'SSR & SEO-ready', 'Tested, documented code'],
   },
   {
     icon: 'dashboard',

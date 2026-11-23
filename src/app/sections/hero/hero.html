@@ -1,6 +1,6 @@
 <section class="relative overflow-hidden" aria-labelledby="hero-title">
   <div
-    class="container-page relative grid items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16 lg:pt-24 lg:pb-28"
+    class="container-page relative grid items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pt-24 lg:pb-28"
   >
     <!-- Left column -->
     <div class="order-2 lg:order-1">
@@ -17,8 +17,8 @@
       </h1>
 
       <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-        I'm {{ profile.name }}, a Frontend Developer specializing in Angular and modern web
-        technologies. I build responsive web applications, business dashboards, and systems that
+        I'm {{ profile.name }}, a Senior Software Engineer specializing in Angular, Vue/Nuxt and
+        modern web technologies. I build responsive web applications, business dashboards, and systems that
         transform complex workflows into intuitive digital experiences, and I secure them with an
         Application Security and DevSecOps mindset, from code review to detection and response.
       </p>
@@ -61,7 +61,7 @@
 
     <!-- Right column: triangle-marker grid, rounded-square portrait, floating badges -->
     <div class="order-1 flex justify-center lg:order-2 lg:justify-end">
-      <div class="relative aspect-square w-full max-w-88 sm:max-w-104 lg:max-w-120">
+      <div class="relative aspect-square w-full max-w-96 sm:max-w-112 lg:max-w-136">
         <!-- Grid of small "play" triangles -->
         <svg class="absolute inset-[6%] h-[88%] w-[88%] text-ink/80" aria-hidden="true">
           <defs>
@@ -74,14 +74,14 @@
 
         <!-- Portrait -->
         <div
-          class="absolute inset-[22%] overflow-hidden rounded-[30%] shadow-2xl shadow-black/40 ring-8 ring-canvas"
+          class="absolute inset-[17%] overflow-hidden rounded-[30%] shadow-2xl shadow-black/40 ring-8 ring-canvas"
         >
           <img
             [src]="profile.portrait"
             [alt]="'Portrait of ' + profile.name"
             class="h-full w-full object-cover"
-            width="340"
-            height="340"
+            width="400"
+            height="400"
             fetchpriority="high"
           />
         </div>

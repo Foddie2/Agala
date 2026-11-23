@@ -1,12 +1,19 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, PLATFORM_ID, inject, signal } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastService } from '../../core/toast.service';
 import { PROFILE } from '../../data/profile';
 import { Icon } from '../../shared/icon/icon';
 import { SectionHeading } from '../../shared/section-heading/section-heading';
 
-type SubmitStatus = 'idle' | 'sending' | 'sent' | 'mailto' | 'error';
+type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
+
+/** Shape of a Formspree error response: { errors: [{ message }] }. */
+interface FormErrorBody {
+  error?: string;
+  errors?: { message?: string }[];
+}
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +23,7 @@ type SubmitStatus = 'idle' | 'sending' | 'sent' | 'mailto' | 'error';
 })
 export class Contact {
   private readonly http = inject(HttpClient);
-  private readonly document = inject(DOCUMENT);
+  private readonly toast = inject(ToastService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private copyTimer: ReturnType<typeof setTimeout> | undefined;
 
@@ -42,37 +49,41 @@ export class Contact {
   }
 
   protected submit(): void {
+    if (this.status() === 'sending') return;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.toast.error('Please check the form', 'A few fields need your attention.');
       return;
     }
     const { name, email, details, website } = this.form.getRawValue();
-    if (website) return; // bot
-
-    if (PROFILE.contactFormEndpoint) {
-      this.status.set('sending');
-      this.http
-        .post(
-          PROFILE.contactFormEndpoint,
-          { name, email, message: details },
-          { headers: { Accept: 'application/json' } },
-        )
-        .subscribe({
-          next: () => {
-            this.status.set('sent');
-            this.form.reset();
-          },
-          error: () => this.status.set('error'),
-        });
+    if (website) {
+      // Bot filled the honeypot: pretend it worked, send nothing.
+      this.onSent();
       return;
     }
 
-    // No backend configured: hand off to the visitor's email client.
-    if (!this.isBrowser) return;
-    const subject = encodeURIComponent(`Project enquiry from ${name}`);
-    const body = encodeURIComponent(`${details}\n\n— ${name} (${email})`);
-    this.document.location.href = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
-    this.status.set('mailto');
+    if (this.isBrowser && !navigator.onLine) {
+      this.toast.error("You're offline", 'Reconnect to the internet and try again.');
+      return;
+    }
+
+    this.status.set('sending');
+    this.http
+      .post(
+        PROFILE.contactFormEndpoint,
+        { name, email, message: details, website },
+        { headers: { Accept: 'application/json' } },
+      )
+      .subscribe({
+        next: () => this.onSent(),
+        error: (err: HttpErrorResponse) => {
+          this.status.set('error');
+          this.toast.error(
+            "Message couldn't be sent",
+            this.errorMessage(err) ?? 'Please try again in a moment.',
+          );
+        },
+      });
   }
 
   protected async copyEmail(): Promise<void> {
@@ -80,11 +91,25 @@ export class Contact {
     try {
       await navigator.clipboard.writeText(PROFILE.email);
       this.copied.set(true);
+      this.toast.success('Email address copied');
       clearTimeout(this.copyTimer);
       this.copyTimer = setTimeout(() => this.copied.set(false), 2000);
     } catch {
-      // Clipboard blocked (insecure context / permissions) — fall back to mail client.
-      this.document.location.href = `mailto:${PROFILE.email}`;
+      // Clipboard blocked (insecure context / permissions).
+      this.toast.error("Couldn't copy", PROFILE.email);
     }
+  }
+
+  private onSent(): void {
+    this.status.set('sent');
+    this.form.reset();
+    this.toast.success('Message sent!', "Thanks for reaching out — I'll get back to you soon.");
+  }
+
+  private errorMessage(err: HttpErrorResponse): string | undefined {
+    if (err.status === 0) return 'Network error — check your connection and try again.';
+    const body = err.error as FormErrorBody | null;
+    const msg = body?.errors?.map((e) => e.message).filter(Boolean).join(' ') || body?.error;
+    return msg || undefined;
   }
 }

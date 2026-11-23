@@ -30,7 +30,8 @@ Before deploying:
 3. **Experience**: replace the entries in `EXPERIENCE` with your real roles and dates.
 4. **Skills**: trim the security list in `SKILL_GROUPS` to what you can speak to in an interview.
 5. **Project links**: set `demoUrl` and `sourceUrl` per project. With no `demoUrl`, the card shows a "Request a Demo" button that links to the contact page.
-6. **Contact form**: set `PROFILE.contactFormEndpoint` to a Formspree (or similar) endpoint for in-page delivery. Without it, submitting opens the visitor's email client with the message pre-filled.
+6. **Contact form**: the form posts to this app's own `POST /api/contact` endpoint (`src/contact-api.ts`), which validates, rate-limits and emails the message to you over SMTP. Copy `.env.example` to `.env` and fill in your SMTP details (on your host, set the same variables in its environment settings). The visitor sees a success toast on delivery and an error toast otherwise. This needs the Node server (`npm run serve:ssr:Agala`); it won't work on static-only hosting such as GitHub Pages.
+7. **PWA**: the service worker (`ngsw-config.json`) is active in production builds only. Icons live in `public/icons/`, the manifest in `public/manifest.webmanifest`. Serve over HTTPS for the site to be installable.
 
 ## Pages
 

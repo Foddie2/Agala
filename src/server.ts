@@ -5,24 +5,22 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { contactApi } from './contact-api';
+
+// Load SMTP settings from a local .env file when present (never commit it).
+if (existsSync('.env')) process.loadEnvFile('.env');
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+app.set('trust proxy', 1);
+
+/** Contact form: POST /api/contact emails the message to you. */
+app.use(contactApi());
 
 /**
  * Serve static files from /browser
