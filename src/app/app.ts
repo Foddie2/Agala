@@ -1,68 +1,23 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, shareReplay } from 'rxjs/operators';
-
-// Material Imports
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './layout/navbar/navbar';
+import { Footer } from './layout/footer/footer';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
-  // Use 'template' for inline HTML
+  imports: [RouterOutlet, Navbar, Footer],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-toolbar color="primary" class="navbar-container elevation-z4">
-      <div class="container mx-auto flex items-center justify-between w-full px-4">
-        <span class="flex items-center gap-2 cursor-pointer">
-          <mat-icon class="logo-icon">rocket_launch</mat-icon>
-          <span class="text-xl font-bold tracking-wider">AGALA</span>
-        </span>
-
-        <div *ngIf="!(isHandset$ | async)" class="flex gap-4">
-          <button mat-button>PROJECTS</button>
-          <button mat-button>EXPERIENCE</button>
-          <button mat-button>ABOUT</button>
-          <button mat-raised-button class="contact-btn">GET IN TOUCH</button>
-        </div>
-
-        <div *ngIf="isHandset$ | async">
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" xPosition="before" class="mobile-menu">
-            <button mat-menu-item>
-              <mat-icon>work_outline</mat-icon>
-              <span>Projects</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>history</mat-icon>
-              <span>Experience</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>person</mat-icon>
-              <span>About</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon color="accent">mail</mat-icon>
-              <span>Contact Me</span>
-            </button>
-          </mat-menu>
-        </div>
-      </div>
-    </mat-toolbar>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] btn-primary"
+      >Skip to content</a
+    >
+    <app-navbar />
+    <main id="main">
+      <router-outlet />
+    </main>
+    <app-footer />
   `,
-  styleUrl: './app.scss', // Changed to match component name
 })
-export class App {
-  // Best practice: call it NavbarComponent
-  private breakpointObserver = inject(BreakpointObserver);
-
-  isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
-}
+export class App {}

@@ -1,0 +1,152 @@
+<app-hero />
+
+<!-- Recruiter strip: what roles, what engagement -->
+<section class="border-y border-line bg-surface/50" aria-label="Open to">
+  <div
+    class="container-page flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between"
+  >
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <span class="eyebrow">Open to</span>
+      @for (role of profile.openTo; track role) {
+        <span class="text-sm font-semibold">{{ role }}</span>
+      }
+    </div>
+    <span class="text-sm text-muted">{{ profile.engagement }}</span>
+  </div>
+</section>
+
+<!-- Two disciplines -->
+<section class="section" aria-labelledby="tracks-title">
+  <div class="container-page">
+    <app-section-heading
+      eyebrow="What I bring"
+      title="Two disciplines,"
+      accent="one standard of delivery."
+      lead="I build the interfaces businesses run on, and I make sure they are secure from the first commit to production monitoring."
+      headingId="tracks-title"
+    />
+
+    <div class="mt-12 grid gap-4 md:grid-cols-2">
+      @for (track of tracks; track track.title) {
+        <article class="card flex flex-col p-7 sm:p-9">
+          <span
+            class="grid h-12 w-12 place-items-center rounded-2xl bg-invert text-on-invert"
+            aria-hidden="true"
+          >
+            <app-icon [name]="track.icon" [size]="22" />
+          </span>
+          <h3 class="mt-6 text-2xl font-bold tracking-tight">{{ track.title }}</h3>
+          <p class="mt-2.5 text-[0.95rem] leading-relaxed text-muted">{{ track.body }}</p>
+          <ul class="mt-6 space-y-2.5">
+            @for (point of track.points; track point) {
+              <li class="flex items-center gap-3 text-sm font-medium">
+                <app-icon name="check" [size]="15" class="text-emerald-500" />
+                {{ point }}
+              </li>
+            }
+          </ul>
+          <a
+            [routerLink]="track.link.path"
+            class="mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold hover:underline"
+          >
+            {{ track.link.label }} <app-icon name="arrow-right" [size]="15" />
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Featured projects preview -->
+<section class="section border-t border-line" aria-labelledby="featured-title">
+  <div class="container-page">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <app-section-heading
+        eyebrow="Selected work"
+        title="Problems solved,"
+        accent="not just pages built."
+        headingId="featured-title"
+      />
+      <a routerLink="/projects" class="btn-secondary self-start md:self-auto">
+        All case studies <app-icon name="arrow-right" [size]="16" />
+      </a>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      @for (project of projects; track project.slug) {
+        <a
+          routerLink="/projects"
+          [fragment]="project.slug"
+          class="group card flex flex-col overflow-hidden transition-colors hover:border-line-strong"
+        >
+          <div class="aspect-[16/11] overflow-hidden border-b border-line bg-elevated">
+            <img
+              [src]="project.image"
+              [alt]="project.imageAlt"
+              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+              width="800"
+              height="550"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <span class="eyebrow">{{ project.category }}</span>
+            <h3 class="mt-2 text-lg font-bold tracking-tight">{{ project.title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{{ project.summary }}</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold">
+              Read case study
+              <app-icon
+                name="arrow-right"
+                [size]="15"
+                class="transition-transform group-hover:translate-x-0.5"
+              />
+            </span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA -->
+<section class="pb-20 sm:pb-28" aria-labelledby="cta-title">
+  <div class="container-page">
+    <div class="relative overflow-hidden rounded-[2rem] bg-invert px-7 py-12 text-on-invert sm:px-12 sm:py-16">
+      <div class="relative max-w-2xl">
+        <h2 id="cta-title" class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          Hiring for frontend or security?
+          <span class="font-serif font-normal italic opacity-80">Let's talk.</span>
+        </h2>
+        <p class="mt-4 text-base leading-relaxed opacity-75 sm:text-lg">
+          I reply within two business days. Send the role or project details and I'll come back with
+          how I can help.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            routerLink="/contact"
+            class="btn btn-lg bg-on-invert text-invert hover:opacity-90"
+          >
+            Get in touch <app-icon name="arrow-right" [size]="16" />
+          </a>
+          <a
+            [href]="profile.linkedin"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-lg border border-on-invert/25 hover:bg-on-invert/10"
+          >
+            <app-icon name="linkedin" [size]="16" /> LinkedIn
+          </a>
+          @if (profile.cvUrl) {
+            <a
+              [href]="profile.cvUrl"
+              download
+              class="btn btn-lg border border-on-invert/25 hover:bg-on-invert/10"
+            >
+              <app-icon name="download" [size]="16" /> Download CV
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

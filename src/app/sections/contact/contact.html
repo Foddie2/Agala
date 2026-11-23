@@ -1,0 +1,143 @@
+<section class="page" aria-labelledby="contact-title">
+  <div class="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <!-- Left: pitch + direct channels -->
+    <div class="flex flex-col">
+      <app-section-heading
+        [level]="1"
+        eyebrow="Contact"
+        title="Tell me what you're"
+        accent="building or hiring for."
+        lead="Recruiters: share the role and team. Clients: share the problem, the systems involved and your timeline. I reply within two business days."
+        headingId="contact-title"
+      />
+
+      <div class="mt-10 space-y-3">
+        <div class="card flex items-center justify-between gap-3 p-4 pl-5">
+          <div class="flex min-w-0 items-center gap-3">
+            <app-icon name="mail" class="text-subtle" />
+            <a [href]="'mailto:' + profile.email" class="truncate text-sm font-semibold hover:underline">{{
+              profile.email
+            }}</a>
+          </div>
+          <button
+            type="button"
+            class="btn-secondary shrink-0 px-3.5 py-2 text-xs"
+            (click)="copyEmail()"
+            [attr.aria-label]="copied() ? 'Email copied' : 'Copy email address'"
+          >
+            @if (copied()) {
+              <app-icon name="check" [size]="14" class="text-emerald-500" /> Copied
+            } @else {
+              <app-icon name="copy" [size]="14" /> Copy
+            }
+          </button>
+        </div>
+        <span class="sr-only" aria-live="polite">{{ copied() ? 'Email address copied to clipboard' : '' }}</span>
+
+        <div class="grid grid-cols-2 gap-3">
+          <a
+            [href]="profile.linkedin"
+            target="_blank"
+            rel="noopener"
+            class="card flex items-center justify-between p-4 pl-5 text-sm font-semibold transition-colors hover:border-line-strong"
+          >
+            <span class="flex items-center gap-3"><app-icon name="linkedin" /> LinkedIn</span>
+            <app-icon name="arrow-up-right" [size]="16" class="text-subtle" />
+          </a>
+          <a
+            [href]="profile.github"
+            target="_blank"
+            rel="noopener"
+            class="card flex items-center justify-between p-4 pl-5 text-sm font-semibold transition-colors hover:border-line-strong"
+          >
+            <span class="flex items-center gap-3"><app-icon name="github" /> GitHub</span>
+            <app-icon name="arrow-up-right" [size]="16" class="text-subtle" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <form class="card p-6 sm:p-8" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="grid gap-5">
+        <div>
+          <label for="cf-name" class="text-sm font-semibold">Name</label>
+          <input
+            id="cf-name"
+            type="text"
+            class="field mt-2"
+            formControlName="name"
+            autocomplete="name"
+            placeholder="Your name"
+            [attr.aria-invalid]="showError('name')"
+            [attr.aria-describedby]="showError('name') ? 'cf-name-err' : null"
+          />
+          @if (showError('name')) {
+            <p id="cf-name-err" class="mt-1.5 text-xs text-red-500">Please enter your name.</p>
+          }
+        </div>
+
+        <div>
+          <label for="cf-email" class="text-sm font-semibold">Email</label>
+          <input
+            id="cf-email"
+            type="email"
+            class="field mt-2"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="you@company.com"
+            [attr.aria-invalid]="showError('email')"
+            [attr.aria-describedby]="showError('email') ? 'cf-email-err' : null"
+          />
+          @if (showError('email')) {
+            <p id="cf-email-err" class="mt-1.5 text-xs text-red-500">Please enter a valid email address.</p>
+          }
+        </div>
+
+        <div>
+          <label for="cf-details" class="text-sm font-semibold">Project details</label>
+          <textarea
+            id="cf-details"
+            rows="6"
+            class="field mt-2 resize-y"
+            formControlName="details"
+            placeholder="What are you building, which systems or APIs are involved, and when do you need it?"
+            [attr.aria-invalid]="showError('details')"
+            [attr.aria-describedby]="showError('details') ? 'cf-details-err' : null"
+          ></textarea>
+          @if (showError('details')) {
+            <p id="cf-details-err" class="mt-1.5 text-xs text-red-500">
+              A few sentences (20+ characters) helps me give a useful reply.
+            </p>
+          }
+        </div>
+
+        <!-- Honeypot -->
+        <div class="hidden" aria-hidden="true">
+          <label for="cf-website">Website</label>
+          <input id="cf-website" type="text" formControlName="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p class="min-h-5 text-sm" aria-live="polite">
+            @switch (status()) {
+              @case ('sent') {
+                <span class="text-emerald-500">Thanks — your message is in. I'll be in touch soon.</span>
+              }
+              @case ('mailto') {
+                <span class="text-muted">Your email app should open with the message ready to send.</span>
+              }
+              @case ('error') {
+                <span class="text-red-500">Something went wrong. Please email me directly.</span>
+              }
+            }
+          </p>
+          <button type="submit" class="btn-primary btn-lg w-full sm:w-auto" [disabled]="status() === 'sending'">
+            {{ status() === 'sending' ? 'Sending…' : 'Send Message' }}
+            <app-icon name="send" [size]="16" />
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

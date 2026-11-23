@@ -1,22 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
-    <title>Agala</title>
+    <title>Benson Agala — Frontend Engineer · AppSec & DevSecOps</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Benson Agala is a Frontend & Angular developer and Application Security / DevSecOps engineer building secure dashboards, inventory systems, API and Shopify integrations."
+    />
+    <meta property="og:title" content="Benson Agala — Frontend Engineer · AppSec & DevSecOps" />
+    <meta
+      property="og:description"
+      content="Angular dashboards, inventory systems, API and Shopify integrations that solve real business problems."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f0f0f" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!--
+      Apply the saved theme before first paint so there is no dark/light flash.
+      Dark is the default; only an explicit "light" preference removes it.
+    -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('ba-theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body>
     <app-root></app-root>
-    <app-navbar></app-navbar>
-    <app-hero></app-hero>
   </body>
 </html>

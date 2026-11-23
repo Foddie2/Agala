@@ -1,14 +1,5 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { App } from './app/app'; // Points to src/app/app.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { App } from './app/app';
+import { appConfig } from './app/app.config';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideAnimations(),
-    provideRouter([
-      { path: '', component: App }, // Index page
-      { path: '**', redirectTo: '' }, // Safe redirect
-    ]),
-  ],
-};
+bootstrapApplication(App, appConfig).catch((err) => console.error(err));

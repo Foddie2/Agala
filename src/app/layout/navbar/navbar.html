@@ -1,0 +1,107 @@
+<header
+  class="border-b transition-colors duration-300"
+  [class]="
+    scrolled() || menuOpen()
+      ? 'border-line bg-canvas/80 backdrop-blur-xl'
+      : 'border-transparent bg-canvas/0'
+  "
+>
+  <nav class="container-page flex h-16 items-center justify-between gap-4" aria-label="Primary">
+    <!-- Left: monogram + links -->
+    <div class="flex items-center gap-8">
+      <a routerLink="/" class="flex items-center gap-3" aria-label="{{ profile.name }}, home">
+        <span
+          class="grid h-9 w-9 place-items-center rounded-full bg-invert text-[0.8rem] font-extrabold tracking-tight text-on-invert"
+          >{{ profile.initials }}</span
+        >
+        <span class="hidden text-sm font-semibold sm:inline">{{ profile.name }}</span>
+      </a>
+
+      <ul class="hidden items-center gap-1 lg:flex">
+        @for (link of links; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="bg-elevated text-ink!"
+              ariaCurrentWhenActive="page"
+              class="rounded-full px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Right: status, theme toggle, CTA -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      @if (profile.availableForWork) {
+        <span class="pill hidden md:inline-flex">
+          <span class="relative flex h-2 w-2">
+            <span
+              class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60"
+            ></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          </span>
+          Available for work
+        </span>
+      }
+
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.aria-pressed]="theme.isDark()"
+        title="Toggle theme"
+      >
+        <!-- Visibility via CSS so server and client markup always match. -->
+        <app-icon name="sun" class="hidden! dark:inline-flex!" />
+        <app-icon name="moon" class="dark:hidden!" />
+      </button>
+
+      <a routerLink="/contact" class="btn-primary hidden sm:inline-flex">
+        Contact Me <app-icon name="arrow-right" [size]="16" />
+      </a>
+
+      <button
+        type="button"
+        class="icon-btn lg:hidden"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+      >
+        <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  @if (menuOpen()) {
+    <div id="mobile-menu" class="border-t border-line lg:hidden">
+      <ul class="container-page flex flex-col gap-1 py-4">
+        @for (link of links; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="bg-elevated text-ink!"
+              ariaCurrentWhenActive="page"
+              class="block rounded-2xl px-4 py-3 text-base font-medium text-muted"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+        <li class="flex items-center justify-between gap-3 px-1 pt-3">
+          @if (profile.availableForWork) {
+            <span class="pill">
+              <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Available for work
+            </span>
+          }
+          <a routerLink="/contact" class="btn-primary">
+            Contact Me <app-icon name="arrow-right" [size]="16" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  }
+</header>

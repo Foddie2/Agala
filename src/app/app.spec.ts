@@ -1,32 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import { App } from './app.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { App } from './app';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [
-        provideAnimations(), // Required for Material components in App
-        provideRouter([]), // Required if your Navbar uses [routerLink]
-      ],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('renders the navbar with the monogram and section links', async () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render the brand name in the navbar', async () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges(); // Trigger initial data binding
     await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
 
-    const compiled = fixture.nativeElement as HTMLElement;
-    // We check for 'AGALA' (from your Navbar) instead of 'Hello, Agala'
-    expect(compiled.querySelector('.text-xl')?.textContent).toContain('AGALA');
+    expect(el.querySelector('header')?.textContent).toContain('BA');
+    const hrefs = Array.from(el.querySelectorAll('nav[aria-label="Primary"] a')).map((a) =>
+      a.getAttribute('href'),
+    );
+    expect(hrefs).toEqual(
+      expect.arrayContaining(['/projects', '/about', '/services', '/experience', '/contact']),
+    );
   });
 });
