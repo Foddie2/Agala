@@ -36,7 +36,13 @@ import { Icon } from '../../shared/icon/icon';
         </nav>
 
         <div class="flex items-center gap-2">
-          <a [href]="profile.github" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub">
+          <a
+            [href]="profile.github"
+            target="_blank"
+            rel="noopener"
+            class="icon-btn"
+            aria-label="GitHub"
+          >
             <app-icon name="github" />
           </a>
           <a
@@ -53,9 +59,7 @@ import { Icon } from '../../shared/icon/icon';
           </button>
         </div>
       </div>
-      <div class="container-page pb-10 text-xs text-subtle">
-        © {{ year }} {{ profile.name }}. Built with Angular & Tailwind CSS.
-      </div>
+      <div class="container-page pb-10 text-xs text-subtle">© {{ year }} {{ profile.name }}.</div>
     </footer>
   `,
 })
