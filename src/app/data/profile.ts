@@ -10,7 +10,7 @@ export const PROFILE = {
   headline: 'Senior Software Engineer · AppSec & DevSecOps',
 
   // TODO: replace with the public email address you want clients to use.
-  email: 'hello@example.com',
+  email: 'bensonagala@live.com',
 
   github: 'https://github.com/Foddie2',
   linkedin: 'https://www.linkedin.com/in/benson-agala/',

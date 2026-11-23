@@ -111,10 +111,12 @@
 <!-- Closing CTA -->
 <section class="pb-20 sm:pb-28" aria-labelledby="cta-title">
   <div class="container-page">
-    <div class="relative overflow-hidden rounded-[2rem] bg-invert px-7 py-12 text-on-invert sm:px-12 sm:py-16">
+    <div
+      class="relative overflow-hidden rounded-[2rem] bg-invert px-7 py-12 text-on-invert sm:px-12 sm:py-16"
+    >
       <div class="relative max-w-2xl">
         <h2 id="cta-title" class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-          Hiring for frontend or security?
+          Hiring for software development or security?
           <span class="font-serif font-normal italic opacity-80">Let's talk.</span>
         </h2>
         <p class="mt-4 text-base leading-relaxed opacity-75 sm:text-lg">
@@ -122,10 +124,7 @@
           how I can help.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a
-            routerLink="/contact"
-            class="btn btn-lg bg-on-invert text-invert hover:opacity-90"
-          >
+          <a routerLink="/contact" class="btn btn-lg bg-on-invert text-invert hover:opacity-90">
             Get in touch <app-icon name="arrow-right" [size]="16" />
           </a>
           <a
@@ -140,7 +139,7 @@
             <a
               [href]="profile.cvUrl"
               download
-              class="btn btn-lg border border-on-invert/25 hover:bg-on-invert/10"
+              class="btn  btn-lg border border-on-invert/25 hover:bg-on-invert/10"
             >
               <app-icon name="download" [size]="16" /> Download CV
             </a>
