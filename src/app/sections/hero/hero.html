@@ -1,9 +1,9 @@
 <section class="relative overflow-hidden" aria-labelledby="hero-title">
   <div
-    class="container-page relative grid items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pt-24 lg:pb-28"
+    class="container-page relative grid grid-cols-1 items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pt-24 lg:pb-28"
   >
     <!-- Left column -->
-    <div class="order-2 lg:order-1">
+    <div class="order-2 min-w-0 lg:order-1">
       <p class="text-sm font-semibold text-muted">
         {{ profile.role }} <span class="mx-1.5 text-line-strong">/</span> {{ profile.focus }}
       </p>
@@ -46,13 +46,15 @@
         </a>
       </div>
 
-      <p class="mt-10 text-sm text-subtle">
+      <p class="mt-10 flex flex-wrap gap-y-1 text-sm text-subtle">
         <span class="sr-only">Core technologies: </span>
         @for (tag of tags; track tag; let last = $last) {
-          <span class="font-medium text-muted">{{ tag }}</span>
-          @if (!last) {
-            <span class="mx-2 text-line-strong" aria-hidden="true">·</span>
-          }
+          <span class="whitespace-nowrap">
+            <span class="font-medium text-muted">{{ tag }}</span>
+            @if (!last) {
+              <span class="mx-2 text-line-strong" aria-hidden="true">·</span>
+            }
+          </span>
         }
       </p>
     </div>
