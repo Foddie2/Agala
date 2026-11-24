@@ -54,6 +54,9 @@ import { Icon } from '../../shared/icon/icon';
           >
             <app-icon name="linkedin" />
           </a>
+          <a [href]="profile.x" target="_blank" rel="noopener" class="icon-btn" aria-label="X">
+            <app-icon name="x" />
+          </a>
           <button type="button" class="icon-btn" aria-label="Back to top" (click)="toTop()">
             <app-icon name="arrow-up" />
           </button>

@@ -17,8 +17,8 @@
       </h1>
 
       <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-        I'm {{ profile.name }}, a Senior Software Engineer specializing in Angular, Vue/Nuxt and
-        modern web technologies. I build responsive web applications, business dashboards, and systems that
+        I'm {{ profile.name }}, a Senior Software Engineer specializing in Angular, Vue/Nuxt, Node.js/Express,
+        ASP.NET and modern web technologies. I build responsive web applications, business dashboards, and systems that
         transform complex workflows into intuitive digital experiences, and I secure them with an
         Application Security and DevSecOps mindset, from code review to detection and response.
       </p>
@@ -45,6 +45,9 @@
           aria-label="LinkedIn profile"
         >
           <app-icon name="linkedin" />
+        </a>
+        <a [href]="profile.x" target="_blank" rel="noopener" class="icon-btn" aria-label="X profile">
+          <app-icon name="x" />
         </a>
       </div>
 

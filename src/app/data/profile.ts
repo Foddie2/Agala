@@ -14,6 +14,8 @@ export const PROFILE = {
 
   github: 'https://github.com/Foddie2',
   linkedin: 'https://www.linkedin.com/in/benson-agala/',
+  // TODO: replace with your X (Twitter) profile URL.
+  x: 'https://x.com/Foddie2',
 
   portrait: '/images/benson-agala-square.jpg',
 
@@ -32,7 +34,7 @@ export const PROFILE = {
    * Path to your CV, e.g. "/benson-agala-cv.pdf" (put the file in /public).
    * The "Download CV" buttons only appear when this is set.
    */
-  cvUrl: '',
+  cvUrl: '/benson-agala-cv.pdf',
 
   /**
    * Where the contact form posts. "/api/contact" is this app's own Express

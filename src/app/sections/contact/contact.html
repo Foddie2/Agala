@@ -34,7 +34,7 @@
         </div>
         <span class="sr-only" aria-live="polite">{{ copied() ? 'Email address copied to clipboard' : '' }}</span>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
           <a
             [href]="profile.linkedin"
             target="_blank"
@@ -51,6 +51,15 @@
             class="card flex items-center justify-between p-4 pl-5 text-sm font-semibold transition-colors hover:border-line-strong"
           >
             <span class="flex items-center gap-3"><app-icon name="github" /> GitHub</span>
+            <app-icon name="arrow-up-right" [size]="16" class="text-subtle" />
+          </a>
+          <a
+            [href]="profile.x"
+            target="_blank"
+            rel="noopener"
+            class="card flex items-center justify-between p-4 pl-5 text-sm font-semibold transition-colors hover:border-line-strong"
+          >
+            <span class="flex items-center gap-3"><app-icon name="x" /> X</span>
             <app-icon name="arrow-up-right" [size]="16" class="text-subtle" />
           </a>
         </div>
