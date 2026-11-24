@@ -1,6 +1,6 @@
 <section class="relative overflow-hidden" aria-labelledby="hero-title">
   <div
-    class="container-page relative grid grid-cols-1 items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pt-24 lg:pb-28"
+    class="container-page relative grid grid-cols-1 items-center gap-12 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:pt-24 lg:pb-28"
   >
     <!-- Left column -->
     <div class="order-2 min-w-0 lg:order-1">
@@ -28,22 +28,23 @@
           View My Projects <app-icon name="arrow-right" [size]="16" />
         </a>
         <a routerLink="/contact" class="btn-secondary btn-lg">Contact Me</a>
-        <span class="mx-1 hidden h-6 w-px bg-line sm:block" aria-hidden="true"></span>
-        <a [href]="profile.github" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub profile">
-          <app-icon name="github" />
-        </a>
-        <a
-          [href]="profile.linkedin"
-          target="_blank"
-          rel="noopener"
-          class="icon-btn"
-          aria-label="LinkedIn profile"
-        >
-          <app-icon name="linkedin" />
-        </a>
-        <a [href]="profile.x" target="_blank" rel="noopener" class="icon-btn" aria-label="X profile">
-          <app-icon name="x" />
-        </a>
+        <div class="flex items-center gap-3">
+          <a [href]="profile.github" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub profile">
+            <app-icon name="github" />
+          </a>
+          <a
+            [href]="profile.linkedin"
+            target="_blank"
+            rel="noopener"
+            class="icon-btn"
+            aria-label="LinkedIn profile"
+          >
+            <app-icon name="linkedin" />
+          </a>
+          <a [href]="profile.x" target="_blank" rel="noopener" class="icon-btn" aria-label="X profile">
+            <app-icon name="x" />
+          </a>
+        </div>
       </div>
 
       <p class="mt-10 flex flex-wrap gap-y-1 text-sm text-subtle">
@@ -61,7 +62,7 @@
 
     <!-- Right column: triangle-marker grid, rounded-square portrait, floating badges -->
     <div class="order-1 flex justify-center lg:order-2 lg:justify-end">
-      <div class="relative aspect-square w-full max-w-96 sm:max-w-112 lg:max-w-136">
+      <div class="relative aspect-square w-full max-w-md sm:max-w-lg lg:max-w-xl">
         <!-- Grid of small "play" triangles -->
         <svg class="absolute inset-[6%] h-[88%] w-[88%] text-ink/80" aria-hidden="true">
           <defs>
@@ -74,7 +75,7 @@
 
         <!-- Portrait -->
         <div
-          class="absolute inset-[17%] overflow-hidden rounded-[30%] shadow-2xl shadow-black/40 ring-8 ring-canvas"
+          class="absolute inset-[10%] overflow-hidden rounded-[30%] shadow-2xl shadow-black/40 ring-8 ring-canvas"
         >
           <img
             [src]="profile.portrait"
