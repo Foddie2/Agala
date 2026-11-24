@@ -11,7 +11,7 @@
 
     <div class="mt-14 space-y-8">
       @for (project of projects; track project.slug; let i = $index) {
-        <article [id]="project.slug" class="card overflow-hidden" [attr.aria-labelledby]="project.slug + '-title'">
+        <article [id]="project.slug" appReveal class="card overflow-hidden" [attr.aria-labelledby]="project.slug + '-title'">
           <div class="border-b border-line bg-elevated">
             <img
               [src]="project.image"

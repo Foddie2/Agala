@@ -11,7 +11,7 @@
         headingId="contact-title"
       />
 
-      <div class="mt-10 space-y-3">
+      <div style="--d: 120ms" class="animate-rise mt-10 space-y-3">
         <div class="card flex items-center justify-between gap-3 p-4 pl-5">
           <div class="flex min-w-0 items-center gap-3">
             <app-icon name="mail" class="text-subtle" />
@@ -67,7 +67,7 @@
     </div>
 
     <!-- Right: form -->
-    <form class="card p-6 sm:p-8" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <form style="--d: 200ms" class="animate-rise card p-6 sm:p-8" [formGroup]="form" (ngSubmit)="submit()" novalidate>
       <div class="grid gap-5">
         <div>
           <label for="cf-name" class="text-sm font-semibold">Name</label>

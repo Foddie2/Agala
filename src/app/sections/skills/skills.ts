@@ -1,15 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SKILL_GROUPS } from '../../data/content';
 import { SectionHeading } from '../../shared/section-heading/section-heading';
+import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-skills',
-  imports: [SectionHeading],
+  imports: [SectionHeading, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section id="skills" class="section border-t border-line" aria-labelledby="skills-title">
       <div class="container-page">
         <app-section-heading
+          appReveal
           eyebrow="Skills & Stack"
           title="Tools chosen for"
           accent="reliable, secure delivery."
@@ -19,7 +21,7 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
 
         <div class="mt-12 grid gap-4 md:grid-cols-2">
           @for (group of groups; track group.title) {
-            <div class="card flex flex-col p-7">
+            <div appReveal [revealDelay]="($index % 2) * 110" class="card flex flex-col p-7">
               <h3 class="text-lg font-bold tracking-tight">{{ group.title }}</h3>
               <p class="mt-1.5 text-sm text-muted">{{ group.description }}</p>
               <ul class="mt-6 flex flex-wrap gap-2">

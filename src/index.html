@@ -35,6 +35,10 @@
             document.documentElement.classList.remove('dark');
           }
         } catch (e) {}
+        // Enable scroll-reveal animations only when JS runs and motion is allowed.
+        if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('reveal-on');
+        }
       })();
     </script>
 

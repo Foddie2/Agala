@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { EXPERIENCE } from '../../data/content';
 import { SectionHeading } from '../../shared/section-heading/section-heading';
+import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-experience',
-  imports: [SectionHeading],
+  imports: [SectionHeading, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="page" aria-labelledby="experience-title">
@@ -22,7 +23,7 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
 
         <ol class="relative border-l border-line">
           @for (item of items; track item.role + item.period; let first = $first) {
-            <li class="relative pb-12 pl-8 last:pb-0 sm:pl-10">
+            <li appReveal class="relative pb-12 pl-8 last:pb-0 sm:pl-10">
               <span
                 class="absolute top-1.5 -left-[7px] h-3.5 w-3.5 rounded-full border-2 border-canvas"
                 [class]="first ? 'bg-emerald-500' : 'bg-line-strong'"

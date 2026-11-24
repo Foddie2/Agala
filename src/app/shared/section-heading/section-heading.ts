@@ -4,7 +4,8 @@ import { NgTemplateOutlet } from '@angular/common';
 @Component({
   selector: 'app-section-heading',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'block max-w-2xl' },
+  // Page titles (level 1) sit above the fold, so they animate in with CSS on first paint.
+  host: { class: 'block max-w-2xl', '[class.animate-rise]': 'level() === 1' },
   template: `
     <p class="eyebrow">{{ eyebrow() }}</p>
     @if (level() === 1) {

@@ -4,26 +4,27 @@
   >
     <!-- Left column -->
     <div class="order-2 min-w-0 lg:order-1">
-      <p class="text-sm font-semibold text-muted">
+      <p class="animate-rise text-sm font-semibold text-muted">
         {{ profile.role }} <span class="mx-1.5 text-line-strong">/</span> {{ profile.focus }}
       </p>
 
       <h1
         id="hero-title"
-        class="mt-5 text-[2.6rem] leading-[1.04] font-extrabold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[4.2rem]"
+        style="--d: 90ms"
+        class="animate-rise mt-5 text-[2.6rem] leading-[1.04] font-extrabold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[4.2rem]"
       >
         Building digital experiences that
         <span class="font-serif font-normal tracking-normal italic">solve real business problems.</span>
       </h1>
 
-      <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+      <p style="--d: 180ms" class="animate-rise mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
         I'm {{ profile.name }}, a Senior Software Engineer specializing in Angular, Vue/Nuxt, Node.js/Express,
         ASP.NET and modern web technologies. I build responsive web applications, business dashboards, and systems that
         transform complex workflows into intuitive digital experiences, and I secure them with an
         Application Security and DevSecOps mindset, from code review to detection and response.
       </p>
 
-      <div class="mt-9 flex flex-wrap items-center gap-3">
+      <div style="--d: 270ms" class="animate-rise mt-9 flex flex-wrap items-center gap-3">
         <a routerLink="/projects" class="btn-primary btn-lg">
           View My Projects <app-icon name="arrow-right" [size]="16" />
         </a>
@@ -47,7 +48,7 @@
         </div>
       </div>
 
-      <p class="mt-10 flex flex-wrap gap-y-1 text-sm text-subtle">
+      <p style="--d: 360ms" class="animate-rise mt-10 flex flex-wrap gap-y-1 text-sm text-subtle">
         <span class="sr-only">Core technologies: </span>
         @for (tag of tags; track tag; let last = $last) {
           <span class="whitespace-nowrap">
@@ -62,7 +63,7 @@
 
     <!-- Right column: triangle-marker grid, rounded-square portrait, floating badges -->
     <div class="order-1 flex justify-center lg:order-2 lg:justify-end">
-      <div class="relative aspect-square w-full max-w-md sm:max-w-lg lg:max-w-xl">
+      <div style="--d: 120ms" class="animate-pop relative aspect-square w-full max-w-md sm:max-w-lg lg:max-w-xl">
         <!-- Grid of small "play" triangles -->
         <svg class="absolute inset-[6%] h-[88%] w-[88%] text-ink/80" aria-hidden="true">
           <defs>

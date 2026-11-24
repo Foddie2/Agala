@@ -3,6 +3,7 @@
 <!-- Recruiter strip: what roles, what engagement -->
 <section class="border-y border-line bg-surface/50" aria-label="Open to">
   <div
+    appReveal="fade"
     class="container-page flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between"
   >
     <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -19,6 +20,7 @@
 <section class="section" aria-labelledby="tracks-title">
   <div class="container-page">
     <app-section-heading
+      appReveal
       eyebrow="What I bring"
       title="Two disciplines,"
       accent="one standard of delivery."
@@ -28,7 +30,7 @@
 
     <div class="mt-12 grid gap-4 md:grid-cols-2">
       @for (track of tracks; track track.title) {
-        <article class="card flex flex-col p-7 sm:p-9">
+        <article appReveal [revealDelay]="$index * 110" class="card flex flex-col p-7 sm:p-9">
           <span
             class="grid h-12 w-12 place-items-center rounded-2xl bg-invert text-on-invert"
             aria-hidden="true"
@@ -60,7 +62,7 @@
 <!-- Featured projects preview -->
 <section class="section border-t border-line" aria-labelledby="featured-title">
   <div class="container-page">
-    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <div appReveal class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <app-section-heading
         eyebrow="Selected work"
         title="Problems solved,"
@@ -77,6 +79,8 @@
         <a
           routerLink="/projects"
           [fragment]="project.slug"
+          appReveal="scale"
+          [revealDelay]="$index * 90"
           class="group card flex flex-col overflow-hidden transition-colors hover:border-line-strong"
         >
           <div class="aspect-[16/11] overflow-hidden border-b border-line bg-elevated">
@@ -112,6 +116,7 @@
 <section class="pb-20 sm:pb-28" aria-labelledby="cta-title">
   <div class="container-page">
     <div
+      appReveal="scale"
       class="relative overflow-hidden rounded-[2rem] bg-invert px-7 py-12 text-on-invert sm:px-12 sm:py-16"
     >
       <div class="relative max-w-2xl">

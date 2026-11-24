@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ABOUT_PRINCIPLES } from '../../data/content';
 import { PROFILE } from '../../data/profile';
 import { SectionHeading } from '../../shared/section-heading/section-heading';
+import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-about',
-  imports: [SectionHeading],
+  imports: [SectionHeading, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="page" aria-labelledby="about-title">
@@ -27,7 +28,7 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
           />
         </div>
 
-        <div class="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
+        <div style="--d: 120ms" class="animate-rise space-y-5 text-base leading-relaxed text-muted sm:text-lg">
           <p>
             Most business software fails at the last mile. The data exists, the APIs work, and the
             team still exports everything to a spreadsheet because the tool in front of them is slow
@@ -56,7 +57,7 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
       <div class="container-page mt-16">
         <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           @for (p of principles; track p.title; let i = $index) {
-            <li class="card p-7">
+            <li appReveal [revealDelay]="i * 90" class="card p-7">
               <span class="font-serif text-3xl text-subtle italic">0{{ i + 1 }}</span>
               <h2 class="mt-4 text-lg font-bold tracking-tight">{{ p.title }}</h2>
               <p class="mt-2 text-sm leading-relaxed text-muted">{{ p.body }}</p>

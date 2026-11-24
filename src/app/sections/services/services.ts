@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { SERVICES } from '../../data/content';
 import { Icon } from '../../shared/icon/icon';
 import { SectionHeading } from '../../shared/section-heading/section-heading';
+import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-services',
-  imports: [Icon, SectionHeading, RouterLink],
+  imports: [Icon, SectionHeading, RouterLink, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="page" aria-labelledby="services-title">
@@ -23,6 +24,8 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           @for (service of services; track service.title) {
             <article
+              appReveal
+              [revealDelay]="($index % 3) * 90"
               class="card group flex flex-col p-7 transition-colors hover:border-line-strong sm:p-8"
             >
               <span
@@ -42,6 +45,7 @@ import { SectionHeading } from '../../shared/section-heading/section-heading';
         </div>
 
         <div
+          appReveal
           class="card mt-4 flex flex-col items-start justify-between gap-5 p-7 sm:flex-row sm:items-center sm:p-8"
         >
           <p class="text-lg font-semibold tracking-tight">
