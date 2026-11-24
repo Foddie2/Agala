@@ -57,12 +57,12 @@ import { Icon } from '../../shared/icon/icon';
           <a [href]="profile.x" target="_blank" rel="noopener" class="icon-btn" aria-label="X">
             <app-icon name="x" />
           </a>
-          <button type="button" class="icon-btn" aria-label="Back to top" (click)="toTop()">
+          <button type="button" class="icon-btn ml-auto md:ml-0" aria-label="Back to top" (click)="toTop()">
             <app-icon name="arrow-up" />
           </button>
         </div>
       </div>
-      <div class="container-page pb-10 text-xs text-subtle">© {{ year }} {{ profile.name }}.</div>
+      <div class="container-page pb-10 text-center text-xs text-subtle md:text-left">© {{ year }} {{ profile.name }}.</div>
     </footer>
   `,
 })

@@ -28,11 +28,6 @@
           View My Projects <app-icon name="arrow-right" [size]="16" />
         </a>
         <a routerLink="/contact" class="btn-secondary btn-lg">Contact Me</a>
-        @if (profile.cvUrl) {
-          <a [href]="profile.cvUrl" download class="btn-secondary btn-lg">
-            <app-icon name="download" [size]="16" /> Download CV
-          </a>
-        }
         <span class="mx-1 hidden h-6 w-px bg-line sm:block" aria-hidden="true"></span>
         <a [href]="profile.github" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub profile">
           <app-icon name="github" />

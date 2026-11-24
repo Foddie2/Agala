@@ -31,12 +31,6 @@ export const PROFILE = {
   engagement: 'Full-time · Contract · Remote',
 
   /**
-   * Path to your CV, e.g. "/benson-agala-cv.pdf" (put the file in /public).
-   * The "Download CV" buttons only appear when this is set.
-   */
-  cvUrl: '/benson-agala-cv.pdf',
-
-  /**
    * Where the contact form posts. "/api/contact" is this app's own Express
    * endpoint (src/contact-api.ts), which emails you via SMTP — see .env.example.
    */
